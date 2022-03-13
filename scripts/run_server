@@ -1,0 +1,11 @@
+#! /bin/bash
+
+main() {
+  source venv/bin/activate
+  cd server/
+  ./wsgi.py
+  deactivate
+  cd ../
+}
+
+main

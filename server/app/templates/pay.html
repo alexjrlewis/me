@@ -1,0 +1,101 @@
+{% set active_page = "pay" %}
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    
+    <div class="row">
+      <form action="{{ url_for('pay_bp.generate_invoice') }}" method="post">
+        {{ form.csrf_token }}
+        <div class="row">
+          <div class="six columns">
+            {{ form.amount.label }}
+            {{ form.amount }}
+          </div>
+          <div class="six columns">
+            {{ form.currency.label }}
+            {{ form.currency }}
+        </div>
+        {{ form.memo.label }}
+        {{ form.memo }}
+        <!-- <div class="g-recaptcha" data-sitekey="foo-bar-baz"></div> -->
+        {{ form.submit }}
+        <button class="button-destructive">Cancel Invoice</button> <i class="fas fa-clock"></i> Expires in {{ payment_request_expiration_time }} seconds
+        <div id="expiryTime">1 second</div>
+      </form>
+    </div>
+
+<script type="text/javascript">
+const startTime = new Date();
+const textPad = document.getElementById("expiryTime");
+console.log("startTime = ", startTime);
+console.log("textPad = ", textPad);
+
+// function showPopup() {
+//   const now = new Date(new Date() - startTime),
+//   const minsLeft = now.getSeconds();
+//     minsLeft = now.getSeconds() % 10;  
+//   if (!minsLeft) {
+//     popup.style.display = "block";
+//     textPad.style.display = "none";   
+//   } else {
+//     popup.style.display = "none";
+//     textPad.style.display = "block";
+//     textPad.textContent = `${10 - minsLeft} minute${minsLeft !== 9 ? 's' : ''} to wait`;    
+//   }
+//   setTimeout(showPopup, 1 * 1000); // Redo on every minute
+// }
+</script>
+
+    <div class="row">
+      <div class="twelve columns" style="text-align: center;">
+        <!-- <img src="{{ payment_request_qrcode  }}" alt="payment-request-qrcode" id="paymentRequestQRCode" style="height: 180px;"> -->
+      <img width="300px" src="{{ url_for('static', filename='img/ln-invoice.png') }}">
+      </div>
+    </div>
+    <div class="row" style="text-align: justify; word-wrap: break-word;">
+      <div class="twelve columns">
+        {{ payment_request_html | safe }} <a><i class="fa-solid fa-paste"></i> <b>copy</b></a>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3><a onclick="expandSection(help);"><i class="fa-solid fa-angles-down" id="helpButton"></i></a>&nbsp;&nbsp;Need help?</h3>
+      <div id="help" style="display: none;">
+        <div class="row">
+          (1) Download a wallet (2) Purchase some bitcoin via a Lightning ATM and send it to that wallet (3) When the wallet balance gets too large, send it to cold storage by generating your own private key:
+        </div>
+        <br>
+        <div class="row">
+          <!-- downloading a wallet or buying bitcoin -->
+          <div class="four columns" style="background: clear; text-align: center;">
+            <a href="https://muun.com/" target="_blank"><img src="{{ url_for('static', filename='img/muun-wallet.png') }}" style="height: 180px;"></a>
+            <br>
+            <a href="https://muun.com/" target="_blank">https://muun.com</a>
+          </div>
+          <div class="four columns" style="background: clear; text-align: center;">
+            <a href="https://atm.lightning.store/" target="_blank"><img src="{{ url_for('static', filename='img/lightning-atm.png') }}" style="height: 180px;"></a>
+            <br>
+            <a href="https://atm.lightning.store" target="_blank">https://atm.lightning.store</a>
+          </div>
+          <div class="four columns" style="background: clear; text-align: center;">
+            <a href="https://iancoleman.io/bip39/" target="_blank"><img src="{{ url_for('static', filename='img/entropy.png') }}" style="height: 180px;"></a>
+            <br>
+            <a href="https://iancoleman.io/bip39/" target="_blank">https://iancoleman.io/bip39</a>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <!-- Useful reading: -->
+        </div>
+        <br>
+      </div>
+    </div>
+    </div>
+      
+    <div>
+      
+    </div>
+
+  </div>
+{% endblock content %}

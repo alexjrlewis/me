@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="alexjrlewis.me">
+    <title>alexjrlewis.me</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vendor/fontawesome-free-6.0.0-web/css/all.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vendor/Skeleton-2.0.4/css/skeleton.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vendor/Skeleton-2.0.4/css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    {% block head %}{% endblock head %}
+  </head>
+  <body>
+    <div class="container">
+      <br>
+      <div class="row" style="text-align: center;">
+        <div class="twelve columns">
+          <img
+            style="width: 180px;"
+            src="{{ url_for('static', filename='img/logo.png') }}"
+            id="profilePic"
+            onclick="toggleProfilePic()"
+            >
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="four columns">
+          <button
+            class="u-full-width button-primary {{'button-hollow' if active_page != 'about' }}"
+            onclick="window.location.href = {{ url_for('about_bp.get') }};"            
+            >
+            About
+          </button>
+        </div>
+        <div class="four columns">
+          <button
+            class="u-full-width button-primary {{'button-hollow' if active_page != 'contact' }}"
+            onclick="window.location.href = {{ url_for('contact_bp.get') }};"
+            >
+            Contact
+          </button>
+        </div>
+        <div class="four columns">
+          <button
+            class="u-full-width button-primary {{'button-hollow' if active_page != 'pay' }}"
+            onclick="window.location.href = {{ url_for('pay_bp.get') }};"
+            >
+            Pay
+          </button>
+        </div>
+      </div>
+      <br>
+    </div>
+    {% block content %}{% endblock content %}    
+    <br>
+    <br>
+    <br>
+    <!-- <script src="https://www.google.com/recaptcha/api.js"></script> -->
+    <script type="text/javascript">
+      function expandSection(event) {
+        console.log(event.id);
+        var x = document.getElementById(event.id);
+        var y = document.getElementById(event.id + "Button");
+        if (x.style.display === "none") {
+          x.style.display = "block";
+          y.classList.add("fa-toggle-on");
+          y.classList.remove("fa-toggle-off");
+        } else {
+          x.style.display = "none";
+          y.classList.remove("fa-toggle-on");
+          y.classList.add("fa-toggle-off");
+        }
+      }      
+    </script>
+    {% block scripts %}{% endblock scripts %}
+  </body>
+</html>

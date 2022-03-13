@@ -1,0 +1,46 @@
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: rgb(34, 34, 34);
+    color: rgb(255, 255, 255);
+  }
+  button:hover {
+    color: white;
+    border-color: white;
+    outline: 0;
+  }
+  select {
+    color: black;
+  }
+  textarea {
+    color: black;
+  }
+
+ .active {
+    background-color: rgb(255, 255, 255);
+    color: rgb(34, 34, 34);
+  }
+  .active:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(34, 34, 34);
+    cursor: default;
+  }
+}
+
+.button-hollow {
+  background-color: transparent !important;
+  color: #61c1eb !important;
+}
+
+.button-destructive {
+  background-color: rgb(255, 59, 48) !important;
+  border-color: rgb(255, 59, 48) !important;
+}
+
+@media (prefers-color-scheme: light) {
+  
+  .destructive-background-color {
+     background: rgb(255, 69, 58);
+  }
+
+}
