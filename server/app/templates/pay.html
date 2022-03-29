@@ -16,51 +16,48 @@
             {{ form.currency.label }}
             {{ form.currency }}
         </div>
-        {{ form.memo.label }}
-        {{ form.memo }}
-        <!-- <div class="g-recaptcha" data-sitekey="foo-bar-baz"></div> -->
-        {{ form.submit }}
-        <button class="button-destructive">Cancel Invoice</button> <i class="fas fa-clock"></i> Expires in {{ payment_request_expiration_time }} seconds
-        <div id="expiryTime">1 second</div>
+
+      <div class="row">
+        <h3><a onclick="expandSection(memo);"><i class="fas fa-toggle-off" id="memoButton"></i></a>&nbsp;&nbsp;Add memo?</h3>
+        <div id="memo" style="display: none;">
+          <div class="row">
+            {{ form.memo.label }}
+            {{ form.memo }}
+          </div>
+          <br>
+        </div>
+      </div>
+      <br>
+      <!-- <div class="g-recaptcha" data-sitekey="foo-bar-baz"></div> -->
+      {{ form.submit }}
+      <br>
+      <br>
+        <!-- <button class="button-all-good">Copy</button> -->
+        <button class="button-destructive">Cancel</button>
+        <i class="fas fa-clock"></i> Expires in {{ payment_request_expiration_time }} seconds
+        <!-- <div id="expiryTime">1 second</div> -->
       </form>
     </div>
-
-<script type="text/javascript">
-const startTime = new Date();
-const textPad = document.getElementById("expiryTime");
-console.log("startTime = ", startTime);
-console.log("textPad = ", textPad);
-
-// function showPopup() {
-//   const now = new Date(new Date() - startTime),
-//   const minsLeft = now.getSeconds();
-//     minsLeft = now.getSeconds() % 10;  
-//   if (!minsLeft) {
-//     popup.style.display = "block";
-//     textPad.style.display = "none";   
-//   } else {
-//     popup.style.display = "none";
-//     textPad.style.display = "block";
-//     textPad.textContent = `${10 - minsLeft} minute${minsLeft !== 9 ? 's' : ''} to wait`;    
-//   }
-//   setTimeout(showPopup, 1 * 1000); // Redo on every minute
-// }
-</script>
 
     <div class="row">
       <div class="twelve columns" style="text-align: center;">
         <!-- <img src="{{ payment_request_qrcode  }}" alt="payment-request-qrcode" id="paymentRequestQRCode" style="height: 180px;"> -->
-      <img width="300px" src="{{ url_for('static', filename='img/ln-invoice.png') }}">
+      <!-- <img width="300px" src="{{ url_for('static', filename='img/ln-invoice.png') }}"> -->
       </div>
     </div>
     <div class="row" style="text-align: justify; word-wrap: break-word;">
       <div class="twelve columns">
-        {{ payment_request_html | safe }} <a><i class="fa-solid fa-paste"></i> <b>copy</b></a>
+        <!-- {{ payment_request_html | safe }} <a><i class="fa-solid fa-paste"></i> <b>copy</b></a> -->
+        qrcode
       </div>
     </div>
+    
+    <br>
+    <br>
+    <br>
 
     <div class="row">
-      <h3><a onclick="expandSection(help);"><i class="fa-solid fa-angles-down" id="helpButton"></i></a>&nbsp;&nbsp;Need help?</h3>
+      <h3><a onclick="expandSection(help);"><i class="fas fa-toggle-off" id="helpButton"></i></a>&nbsp;&nbsp;Need help?</h3>
       <div id="help" style="display: none;">
         <div class="row">
           (1) Download a wallet (2) Purchase some bitcoin via a Lightning ATM and send it to that wallet (3) When the wallet balance gets too large, send it to cold storage by generating your own private key:
@@ -71,15 +68,15 @@ console.log("textPad = ", textPad);
           <div class="four columns" style="background: clear; text-align: center;">
             <a href="https://muun.com/" target="_blank"><img src="{{ url_for('static', filename='img/muun-wallet.png') }}" style="height: 180px;"></a>
             <br>
-            <a href="https://muun.com/" target="_blank">https://muun.com</a>
+            <!-- <a href="https://muun.com/" target="_blank">https://muun.com</a> -->
           </div>
           <div class="four columns" style="background: clear; text-align: center;">
-            <a href="https://atm.lightning.store/" target="_blank"><img src="{{ url_for('static', filename='img/lightning-atm.png') }}" style="height: 180px;"></a>
+            <!-- <a href="https://atm.lightning.store/" target="_blank"><img src="{{ url_for('static', filename='img/lightning-atm.png') }}" style="height: 180px;"></a> -->
             <br>
-            <a href="https://atm.lightning.store" target="_blank">https://atm.lightning.store</a>
+            <!-- <a href="https://atm.lightning.store" target="_blank">https://atm.lightning.store</a> -->
           </div>
           <div class="four columns" style="background: clear; text-align: center;">
-            <a href="https://iancoleman.io/bip39/" target="_blank"><img src="{{ url_for('static', filename='img/entropy.png') }}" style="height: 180px;"></a>
+            <!-- <a href="https://iancoleman.io/bip39/" target="_blank"><img src="{{ url_for('static', filename='img/entropy.png') }}" style="height: 180px;"></a> -->
             <br>
             <a href="https://iancoleman.io/bip39/" target="_blank">https://iancoleman.io/bip39</a>
           </div>
@@ -98,4 +95,13 @@ console.log("textPad = ", textPad);
     </div>
 
   </div>
+
+<script type="text/javascript">
+// start the invoice expiry time
+// const startTime = new Date();
+// const textPad = document.getElementById("expiryTime");
+// console.log("startTime = ", startTime);
+// console.log("textPad = ", textPad);
+</script>
+
 {% endblock content %}

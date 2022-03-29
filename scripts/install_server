@@ -7,7 +7,6 @@ main() {
   venv/bin/pip3 install --upgrade pip
   venv/bin/pip3 install -r requirements.txt
   deactivate
-  # cd ../
 }
 
 main

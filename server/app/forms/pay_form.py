@@ -16,7 +16,7 @@ class PayForm(FlaskForm):
     currency = SelectField(
         "Select a currency",
         choices=[
-            ("sats", "sats"),
+            ("sats", "Sats"),
             ("btc", "₿"),
             ("gbp", "£"),
             ("usd", "$"),
@@ -28,9 +28,10 @@ class PayForm(FlaskForm):
     memo = TextAreaField(
         "Memo",
         [validators.optional(), validators.length(max=200)],
+        default="please add content",
         render_kw={"placeholder": "Invoice for …", "class": "u-full-width"},
     )
 
     recaptcha = RecaptchaField()
 
-    submit = SubmitField("Generate lightning invoice", render_kw={"class": "button-primary"},)
+    submit = SubmitField("Generate", render_kw={"class": "button-primary"},)

@@ -1,8 +1,8 @@
 #! /bin/bash
 
-export LNNODE_USERNAME=
-export LNNODE_PASSWORD=
-export LNNODE_HOSTNAME=
+export NODE_USERNAME=
+export NODE_PASSWORD=
+export NODE_HOSTNAME=
 
 export MAIL_SERVER=
 export MAIL_PORT=

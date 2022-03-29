@@ -33,8 +33,19 @@
 }
 
 .button-destructive {
+  color: white;
   background-color: rgb(255, 59, 48) !important;
   border-color: rgb(255, 59, 48) !important;
+}
+
+.button-all-good {
+  color: white;
+  background-color: rgb(48, 209, 88) !important;
+  border-color: rgb(48, 209, 88) !important;  
+}
+
+input[type="submit"] {
+  /*text-transform: none !important;*/
 }
 
 @media (prefers-color-scheme: light) {
